@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install dependencies
         run: |
           sudo apt-get update
@@ -21,7 +21,7 @@ jobs:
         env:
           EPSILON_SOURCE_DIR: /opt/epsilon
       - name: Upload NWA
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: doom-nw
           path: output/*.nwa
