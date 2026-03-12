@@ -1,0 +1,8 @@
+{
+  "name": "DOOM-NW",
+  "version": "1.0.0",
+  "author": "DoomNW",
+  "category": "game",
+  "targetDevice": "n0120",
+  "icon": "icon.png"
+}
