@@ -1,0 +1,27 @@
+name: Build DOOM-NW
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi git make python3 nodejs npm
+      - name: Install nwlink
+        run: npm install -g nwlink
+      - name: Clone Epsilon SDK
+        run: git clone --depth 1 https://github.com/numworks/epsilon.git /opt/epsilon
+      - name: Build
+        run: make
+        env:
+          EPSILON_SOURCE_DIR: /opt/epsilon
+      - name: Upload NWA
+        uses: actions/upload-artifact@v3
+        with:
+          name: doom-nw
+          path: output/*.nwa
